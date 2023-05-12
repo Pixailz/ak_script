@@ -53,7 +53,7 @@ args = parser.parse_args()
 context.log_file = "ak.log"
 
 ## LOAD BINARY
-ELF_LOADED = ELF(args.target)
+context.binary = ELF_LOADED = ELF(args.target)
 ROP_LOADED = ROP(ELF_LOADED)
 
 ## Some thins may change between 64 and 32 bit
