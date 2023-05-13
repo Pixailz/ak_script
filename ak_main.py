@@ -152,7 +152,7 @@ class AkAuto():
 
 	def get_core_dump(self, length):
 		_tmp_proc = self.elf_loaded.process()
-		_tmp_proc.sendline(cyclic(_LENGTH_CYCLIC))
+		_tmp_proc.sendline(cyclic(length))
 		_tmp_proc.wait_for_close()
 		context.log_console = open('/dev/null', 'w')
 		self.core_dump = _tmp_proc.corefile
