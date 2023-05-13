@@ -1,7 +1,7 @@
 #!/bin/env python3
 
 import argparse
-import os
+from os import remove as _OS_REMOVE
 from pprint import pprint
 from sys import argv as _ARGV
 from pwn import *
@@ -159,7 +159,7 @@ class AkAuto():
 		context.clear()
 		# remove core dump
 		self.logger.log_padded("Removing core dump", self.core_dump.path)
-		os.remove(self.core_dump.path)
+		_OS_REMOVE(self.core_dump.path)
 
 	def find_offset(self, reg=None, length=_LENGTH_CYCLIC):
 		if reg == None:
