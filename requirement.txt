@@ -1,0 +1,5 @@
+# base deps
+pwn
+
+# debug deps, comment with '#' to disable
+pprint

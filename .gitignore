@@ -1,2 +1,10 @@
 # log file
 *.log
+
+# python module thing
+__pycache__
+
+# all binary, execpt those for demo
+bin/*
+!bin/ROPEmperium
+!bin/PwnMe
